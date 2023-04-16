@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// The `/api/products` endpoint
-// Category.hasMany(Product)
+
 Product.belongsTo(Category)
-Product.hasMany(Tag)
-// Category.hasMany(Product)
+Product.belongsToMany(Tag, {through: 'product_tags'})
+
 // get all products
 router.get('/',  async (req, res) => {
   const categories = await Category.findAll()

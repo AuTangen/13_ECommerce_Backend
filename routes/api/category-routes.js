@@ -4,6 +4,7 @@ Category.hasMany(Product)
 // The `/api/categories` endpoint
 
 router.get('/', async (req, res) => {
+  const product = await Product.findAll()
   const categories = await Category.findAll({include: Product})
   res.send(categories)
   // find all categories
